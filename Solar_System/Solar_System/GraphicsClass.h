@@ -34,6 +34,7 @@ private:
 	D3DClass* m_Direct3D = nullptr;
 	CameraClass* m_Camera = nullptr;
 	ModelClass* m_Model = nullptr;
+	ModelClass* m_Map = nullptr;
 	TextureShaderClass* m_TextureShader = nullptr;
 	PlanetListClass* m_PlanetList = nullptr;
 };

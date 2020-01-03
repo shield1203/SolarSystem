@@ -62,6 +62,20 @@ bool GraphicsClass::Initialize(int screenWidth, int screenHeight, HWND hwnd)
 		return false;
 	}
 	
+	// m_Map 객체 생성
+	m_Map = new ModelClass;
+	if (!m_Map)
+	{
+		return false;
+	}
+
+	// m_Map 객체 초기화
+	if (!m_Map->Initialize(m_Direct3D->GetDevice(), m_Direct3D->GetDeviceContext(), "data/map.txt"))
+	{
+		MessageBox(hwnd, L"Could not initialize the model object.", L"Error", MB_OK);
+		return false;
+	}
+
 	// m_TextureShader 객체 생성
 	m_TextureShader = new TextureShaderClass;
 	if (!m_TextureShader)
@@ -151,24 +165,9 @@ bool GraphicsClass::Render()
 	m_Camera->GetViewMatrix(viewMatrix);
 	m_Direct3D->GetProjectionMatrix(projectionMatrix);
 
-	//for (int i = 0; i < 9; i++) {
-	//	// 회전 할 수 있도록 회전 값으로 월드 행렬을 회전합니다.
-	//	worldMatrix = XMMatrixScaling(0.6955, 0.6955, 0.6955) * XMMatrixRotationY(rotation) * XMMatrixTranslation(2*i, 0, 0);
 	//	//XMMatrixRotationY(rotation), XMMatrixTranslation(2, 0, 0), XMMatrixScaling(0.6963, 0.6963, 0.6963), XMMatrixRotationY(rotation)
 
-	//	// 모델 버텍스와 인덱스 버퍼를 그래픽 파이프 라인에 배치하여 드로잉을 준비합니다.
-	//	m_Model->Render(m_Direct3D->GetDeviceContext());
-
-	//	// 텍스쳐 쉐이더를 사용하여 모델을 렌더링합니다.
-	//	if (!m_TextureShader->Render(m_Direct3D->GetDeviceContext(), m_Model->GetIndexCount(), worldMatrix, viewMatrix, projectionMatrix, m_Model->GetTexture(EARTH)))
-	//	{
-	//		return false;
-	//	}
-
-	//	m_Direct3D->GetWorldMatrix(worldMatrix);
-	//}
-
-	// TEST
+	// 태양계 행성들 
 	for (int i = 0; i < 9; i++) {
 		m_PlanetList[i].GetObjectMatrix(worldMatrix);
 
@@ -184,6 +183,7 @@ bool GraphicsClass::Render()
 		m_Direct3D->GetWorldMatrix(worldMatrix);
 	}
 
+	// 달
 	m_PlanetList[3].GetObjectMatrix(worldMatrix);
 	m_PlanetList[9].GetObjectMatrix(worldMatrix);
 
@@ -197,8 +197,6 @@ bool GraphicsClass::Render()
 	}
 	
 	m_Direct3D->GetWorldMatrix(worldMatrix);
-
-	// TEST
 
 	// 버퍼의 내용을 화면에 출력합니다
 	m_Direct3D->EndScene();

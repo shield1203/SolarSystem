@@ -51,6 +51,8 @@ void ModelClass::Shutdown()
 
 	// 모델 데이터 반환
 	ReleaseModel();
+
+	delete[] m_filename;
 }
 
 
@@ -188,18 +190,15 @@ void ModelClass::RenderBuffers(ID3D11DeviceContext* deviceContext)
 bool ModelClass::LoadTexture(ID3D11Device* device, ID3D11DeviceContext* deviceContext)
 {
 	// 텍스처 오브젝트를 생성한다.
-	m_Texture = new TextureClass[10];
+	m_Texture = new TextureClass[m_TextureCount];
 	if (!m_Texture)
 	{
 		return false;
 	}
 
-	char* filename[10] = { "data/sun.tga", "data/mercury.tga", "data/venus.tga", "data/earth.tga", 
-		"data/mars.tga", "data/jupiter.tga", "data/uranus.tga", "data/saturn.tga", "data/neptune.tga", "data/moon.tga" };
-
 	// 텍스처 오브젝트를 초기화한다.
-	for (int i = 0; i < 10; i++) {
-		if (!m_Texture[i].Initialize(device, deviceContext, filename[i])) {
+	for (int i = 0; i < m_TextureCount; i++) {
+		if (!m_Texture[i].Initialize(device, deviceContext, m_filename[i].c_str())) {
 			return false;
 		}
 	}
@@ -251,6 +250,27 @@ bool ModelClass::LoadModel(char* filename)
 	if (!m_model)
 	{
 		return false;
+	}
+
+	// 텍스쳐 카운트의 값까지 읽는다.
+	fin.get(input);
+	while (input != ':')
+	{
+		fin.get(input);
+	}
+
+	// 텍스쳐 카운트를 읽는다.
+	fin >> m_TextureCount;
+
+	m_filename = new string[m_TextureCount];
+	if (!m_filename)
+	{
+		return false;
+	}
+
+	// 텍스쳐 파일 경로를 읽는다.
+	for (int i = 0; i < m_TextureCount; i++) {
+		fin >> m_filename[i];
 	}
 
 	// 데이터의 시작 부분까지 읽는다.

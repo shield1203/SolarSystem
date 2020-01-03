@@ -1,4 +1,2 @@
-﻿  PlanetListClass.cpp
-F:\DX\Solar_system\Solar_System\PlanetListClass.cpp(68,21): warning C4305:  '=': 'double'에서 'float'(으)로 잘립니다.
-F:\DX\Solar_system\Solar_System\PlanetListClass.cpp(75,21): warning C4305:  '=': 'double'에서 'float'(으)로 잘립니다.
+﻿  ModelClass.cpp
   Solar_System.vcxproj -> F:\DX\Solar_system\x64\Debug\Solar_System.exe

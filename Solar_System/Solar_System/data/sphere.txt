@@ -1,5 +1,17 @@
 Vertex Count: 14700
 
+Texture Count: 10
+data/sun.tga
+data/mercury.tga
+data/venus.tga
+data/earth.tga
+data/mars.tga
+data/jupiter.tga
+data/uranus.tga
+data/saturn.tga
+data/neptune.tga
+data/moon.tga
+
 Data:
 0.124345 -0.992115 0.015708 1.04003 0.996057 0.124426 -0.992115 0.015059
 0.060818 -0.998027 0.015615 1.08003 0.999013 0.067186 -0.997612 0.016026

@@ -17,7 +17,7 @@ TextureClass::~TextureClass()
 }
 
 
-bool TextureClass::Initialize(ID3D11Device* device, ID3D11DeviceContext* deviceContext, char* filename)
+bool TextureClass::Initialize(ID3D11Device* device, ID3D11DeviceContext* deviceContext, const char* filename)
 {
 	int width = 0;
 	int height = 0;
@@ -111,7 +111,7 @@ ID3D11ShaderResourceView* TextureClass::GetTexture()
 }
 
 
-bool TextureClass::LoadTarga(char* filename, int& height, int& width)
+bool TextureClass::LoadTarga(const char* filename, int& height, int& width)
 {
 	// targa 파일을 바이너리 모드로 파일을 엽니다.
 	FILE* filePtr;

@@ -44,6 +44,8 @@ private:
 	ID3D11Buffer* m_indexBuffer = nullptr;
 	int m_vertexCount = 0;
 	int m_indexCount = 0;
+	int m_TextureCount = 0;
 	TextureClass* m_Texture = nullptr;
 	ModelType* m_model = nullptr;
+	string* m_filename = nullptr;
 };
