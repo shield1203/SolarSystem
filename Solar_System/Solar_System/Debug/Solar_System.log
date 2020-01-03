@@ -1,0 +1,6 @@
+﻿  GraphicsClass.cpp
+  ModelClass.cpp
+  TextureClass.cpp
+  코드를 생성하고 있습니다...
+F:\DX\Solar_system\Solar_System\GraphicsClass.cpp(143,54): warning C4101:  'modelMatrix' :참조되지 않은 지역 변수입니다.
+  Solar_System.vcxproj -> F:\DX\Solar_system\Debug\Solar_System.exe
