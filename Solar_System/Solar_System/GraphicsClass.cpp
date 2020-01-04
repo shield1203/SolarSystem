@@ -167,6 +167,16 @@ bool GraphicsClass::Render()
 
 	//	//XMMatrixRotationY(rotation), XMMatrixTranslation(2, 0, 0), XMMatrixScaling(0.6963, 0.6963, 0.6963), XMMatrixRotationY(rotation)
 
+	// 快林
+	m_Map->Render(m_Direct3D->GetDeviceContext());
+
+	if (!m_TextureShader->Render(m_Direct3D->GetDeviceContext(), m_Map->GetIndexCount(), worldMatrix, viewMatrix, projectionMatrix, m_Map->GetTexture((PLANETS)0)))
+	{
+		return false;
+	}
+
+	m_Direct3D->GetWorldMatrix(worldMatrix);
+
 	// 怕剧拌 青己甸 
 	for (int i = 0; i < 9; i++) {
 		m_PlanetList[i].GetObjectMatrix(worldMatrix);

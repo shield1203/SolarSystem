@@ -86,7 +86,6 @@ void PlanetListClass::Initialize(PLANETS planet) {
 		m_around = 0.04f;
 		break;
 	}
-	
 }
 
 void PlanetListClass::Frame() {
